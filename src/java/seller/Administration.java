@@ -2,13 +2,10 @@ package seller;
 
 import cartago.Artifact;
 
-
 /**
- * 
- * @author squall
- *
  * This class is to configure seller and company attribute
  * 
+ * @author squall
  */
 public class Administration extends Artifact {
 

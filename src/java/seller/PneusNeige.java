@@ -1,5 +1,9 @@
 package seller;
-
+/**
+ * This class is member of Decorator Pattern, that is an option decorator of a car
+ * @author squall
+ * @see Voiture
+ */
 public class PneusNeige extends DecorateurVoiture {
 
 	public PneusNeige(Voiture v)
@@ -14,7 +18,7 @@ public class PneusNeige extends DecorateurVoiture {
 
 	@Override
 	public String toString() {
-		return this.voiture.toString()+System.getProperty("line.separator")+"Option : Pneus neige";
+		return this.voiture.toString()+System.getProperty("line.separator")+" Option : Pneus neige";
 	}
 
 	@Override

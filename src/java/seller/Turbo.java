@@ -1,11 +1,7 @@
 package seller;
 /**
- * 
- * @author squall
- *
  * This class is member of Decorator Pattern, that is an option decorator of a car
- * 
- * 
+ * @author squall
  * @see Voiture
  */
 public class Turbo extends DecorateurVoiture {
@@ -22,7 +18,7 @@ public class Turbo extends DecorateurVoiture {
 
 	@Override
 	public String toString() {
-		return this.voiture.toString()+System.getProperty("line.separator")+"Option : Turbo";
+		return this.voiture.toString()+System.getProperty("line.separator")+" Option : Turbo";
 	}
 
 	public boolean is_Rent()

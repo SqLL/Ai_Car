@@ -2,13 +2,12 @@ package seller;
 
 
 /**
- * 
- * @author squall
- *
  * This class is member of Decorator Pattern
  * 
+ * @author squall
  * @see Voiture
  */
+
 public class PrestigeAndFun extends Voiture {
 
 	public PrestigeAndFun(boolean _is_rent, String _name) {
@@ -24,7 +23,7 @@ public class PrestigeAndFun extends Voiture {
 	
 	@Override
 	public String toString() {
-		return name.toString()+System.getProperty("line.separator")+"Type : "+getType();
+		return name.toString()+System.getProperty("line.separator")+" Type : "+getType();
 	}
 
 	@Override

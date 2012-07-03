@@ -15,6 +15,6 @@ MAS ai_car {
  
 
    classpath: "/Users/squall/Downloads/cartago-2.0.1/lib/cartago.jar"; "/Users/squall/Downloads/cartago-2.0.1/lib/c4jason.jar";
-   "/Users/squall/Dropbox/Stage/Documents/lib/jcalendar-1.4/lib/jcalendar-1.4.jar";
+   "/Users/squall/Dropbox/Stage/Documents/lib/jcalendar-1.4/lib/jcalendar-1.4.jar";  "/Users/squall/Dropbox/Stage/Documents/lib/mysql-connector-java-3.0.17-ga-bin.jar";
    aslSourcePath: "src/asl"; 
 }

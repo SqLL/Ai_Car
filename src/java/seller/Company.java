@@ -21,11 +21,13 @@ import cartago.OpFeedbackParam;
 
 public class Company extends Artifact {
 
-	
+	/**
+	 * List of sales point of a company
+	 */
 	private List<PointOfSale> lPoint=new ArrayList<PointOfSale>();
-
 	private PointOfSale pointFound;
 	private Administration config;
+	private String name;
 
 	void init()
 	{
@@ -40,6 +42,13 @@ public class Company extends Artifact {
 		lPoint.add(GenerateurClasse.genererPointOfSale(new PointOfSale(),conf));
 
 	}
+	
+	void init(Administration conf, Contrainte request)
+	{
+		name=request.getNameCompany();
+		lPoint = new ArrayList<PointOfSale>();
+		lPoint.add(GenerateurClasse.genererPointOfSale(new PointOfSale(),conf,request.getNamePointsOfSales()));
+	}
 
 	
 	@OPERATION
@@ -49,12 +58,9 @@ public class Company extends Artifact {
 
 	@Override
 	public String toString() {
-		StringBuffer result= new StringBuffer();
-		System.out.println("DEBUG");
+		StringBuffer result= new StringBuffer("Company : "+this.name+ System.getProperty("line.separator"));
 		for(PointOfSale point : lPoint)
 		{
-			if(point==null)
-				System.out.println("NULL");
 			result.append(point.toString());
 		}
 		return result.toString();
@@ -63,12 +69,11 @@ public class Company extends Artifact {
 	@OPERATION
 	void carAvailable() {
 		int ite=0;
-		System.out.println(lPoint.size());
+		//System.out.println(lPoint.size());
 		while(pointFound == null && ite < lPoint.size())
 		{
 			if(lPoint.get(ite).carAvailable())
 				pointFound=lPoint.get(ite);
-			
 			ite++;
 		}
 		if(pointFound != null)
@@ -99,5 +104,7 @@ public class Company extends Artifact {
 	public void addPointOfSale(PointOfSale n){
 		lPoint.add(n);
 	}
+	
+	
 	
 }

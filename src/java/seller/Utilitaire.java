@@ -2,13 +2,12 @@ package seller;
 
 
 /**
- * 
- * @author squall
- *
  * This class is member of Decorator Pattern
  * 
+ * @author squall
  * @see Voiture
  */
+
 public class Utilitaire extends Voiture {
 
 
@@ -25,7 +24,7 @@ public class Utilitaire extends Voiture {
 
 	@Override
 	public String toString() {
-		return name.toString()+System.getProperty("line.separator")+"Type : "+getType();
+		return name.toString()+System.getProperty("line.separator")+" Type : "+getType();
 	}
 
 	@Override

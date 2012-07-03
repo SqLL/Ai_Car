@@ -41,12 +41,12 @@ public class Dialog extends Artifact {
 		 */
 		await("waitingAnswer");
 
-		System.out.println(" Attente terminée");
-		System.out.println(this.carAvailable.size());
+		System.out.println("[INFO] [CUSTOMER] Attente terminée ");
+		//System.out.println(this.carAvailable.size());
 		boolean result = (this.carAvailable.size() != 0);
-		System.out.println("result= " + result);
+		//System.out.println("result= " + result);
 		signal("answerAvailable", result);
-		System.out.println(" Signal envoyé");
+		//System.out.println(" Signal envoyé");
 	}
 
 	@GUARD

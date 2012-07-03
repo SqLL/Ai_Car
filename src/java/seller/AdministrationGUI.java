@@ -26,10 +26,9 @@ import cartago.INTERNAL_OPERATION;
 import cartago.tools.GUIArtifact;
 
 /**
- * 
+ * In this class you can configure the windows administration GUI
  * @author squall
- * 
- *         In this class you can configure the windows administration GUI
+ *      
  */
 
 public class AdministrationGUI extends GUIArtifact {
@@ -37,7 +36,7 @@ public class AdministrationGUI extends GUIArtifact {
 	private AdminFrame frame;
 
 	/**
-	 * (non-Javadoc)
+	 * Constructeur du GUIArtifact
 	 * 
 	 * @see cartago.tools.GUIArtifact#setup()
 	 * 
@@ -50,7 +49,7 @@ public class AdministrationGUI extends GUIArtifact {
 	}
 
 	/**
-	 * Check the forms
+	 * to Check the forms
 	 * 
 	 */
 
@@ -61,7 +60,6 @@ public class AdministrationGUI extends GUIArtifact {
 		if (frame.probaRent.getValue() != null
 				&& frame.capacityOfPointSale.getValue() != null) {
 			// Verification double entre 0 et 1.
-			System.out.println(frame.probaRent.getText());
 			if (frame.probaRent.getText().equals("0")
 					|| frame.probaRent.getText().equals("1")) {
 				 probability = new Double(frame.probaRent.getText());
@@ -69,7 +67,7 @@ public class AdministrationGUI extends GUIArtifact {
 				 probability = (Double) (frame.probaRent.getValue());
 			}
 				if (probability <= 1 && probability >= 0) {
-					System.out.println(probability.toString());
+					
 					// Verification pour les capacités
 					Long capacity = (Long) frame.capacityOfPointSale.getValue();
 					if (capacity == 0) {
@@ -106,15 +104,14 @@ public class AdministrationGUI extends GUIArtifact {
 	}
 
 	/**
-	 * 
+	 * In this class you can configure the view
 	 * @author squall
-	 * 
-	 *         In this class you can configure the view
+	 *       
 	 */
 	class AdminFrame extends JFrame {
 
 		private static final long serialVersionUID = 1L;
-		JButton validationButton;
+		private JButton validationButton;
 		private JLabel jTextCapacity;
 		private JFormattedTextField capacityOfPointSale;
 		private JLabel jTextProba;
@@ -156,6 +153,9 @@ public class AdministrationGUI extends GUIArtifact {
 		private JPanel end;
 		private JPanel top;
 
+		/**
+		 * General builder of the windows 
+		 */
 		public AdminFrame() {
 			setTitle(messages.getString("admin_title"));
 			JPanel panel = new JPanel();
@@ -172,6 +172,9 @@ public class AdministrationGUI extends GUIArtifact {
 			this.setVisible(true);
 		}
 
+		/**
+		 * Void Which add MenuBar in Frame to switch language
+		 */
 		public void AddMenu() {
 			lang.setText(messages.getString("admin_menu_lang"));
 			langFr.setText(messages.getString("admin_item_fr"));
@@ -204,6 +207,15 @@ public class AdministrationGUI extends GUIArtifact {
 
 		}
 
+		
+		/**
+		 * Function who add the Button in frame
+		 * 
+		 * @param panel
+		 *            general panel of the frame
+		 * @param gbc
+		 *            Gestionnaire de layout gridbaglayout
+		 */
 		private void AddButton(JPanel panel, GridBagConstraints gbc) {
 
 			validationButton = new JButton(messages.getString("admin_button"));
@@ -223,6 +235,11 @@ public class AdministrationGUI extends GUIArtifact {
 
 		}
 
+		/**
+		 * The void add into frame the field and the possibility to put probability on it
+		 * @param panel General Panel
+		 * @param gbc GridbagConstraint to put something somewhere in the windows
+		 */
 		public void AddProbability(JPanel panel, GridBagConstraints gbc) {
 			top = new JPanel();
 			this.jTextProba = new JLabel(
@@ -251,6 +268,11 @@ public class AdministrationGUI extends GUIArtifact {
 			panel.add(top, gbc);
 		}
 
+		/**
+		 * The void add into frame the field and the possibility to put probability on it
+		 * @param panel General Panel
+		 * @param gbc GridbagConstraint to put something somewhere in the windows
+		 */
 		public void AddConfiguration(JPanel panel, GridBagConstraints gbc) {
 
 			end = new JPanel();
@@ -281,6 +303,9 @@ public class AdministrationGUI extends GUIArtifact {
 
 		}
 
+		/**
+		 * Useful to update all the field, text, title with the language selected by user
+		 */
 		public void updateLang() {
 			this.setTitle(messages.getString("admin_title"));
 			end.setBorder(BorderFactory.createTitledBorder(messages

@@ -5,11 +5,13 @@ want(Request).
 
 /* Plans */
 
-
+/* Partie interface avec le client */
 +!gui : true <- makeArtifact("req","customer.Contrainte",[],K);
 	makeArtifact("gui","customer.ContrainteGUI",[],B);
 	focus(B).
 
+
+/* Partie principale lancement de la requete et attente d'informations */
 +launch(Req)<- .print("START");
 	!setupTool(Id);
 	.print("I'm looking for a seller i do my request");
@@ -24,6 +26,7 @@ want(Request).
   focus(C).
 
 
+/*Decisions a prendre en fonction de la reponse */
 +answerAvailable(true) [artifact_name(Id,"c0")]
 	<- .print("I know than some car are available for me");
 		focus(Id);

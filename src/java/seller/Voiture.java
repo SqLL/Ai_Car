@@ -4,10 +4,10 @@ import cartago.Artifact;
 
 
 /**
+ *	This is the abstract class it's also the high lvl class in Decorator pattern
  * 
  * @author squall
  *
- *	This is the abstract class it's also the high lvl class in Decorator pattern
  */
 public abstract class Voiture extends Artifact {
 

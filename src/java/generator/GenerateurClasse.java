@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-
 import seller.Administration;
 import seller.Automatique;
 import seller.PneusNeige;
@@ -151,6 +150,33 @@ public class GenerateurClasse {
 	 * @see PointOfSale
 	 * @param conf
 	 *            is a configuration to generate the PointOfSale and cars
+	 * @param local the name of the localisation       
+	 *            
+	 * @return PointOfSale
+	 */
+	public static PointOfSale genererPointOfSale(PointOfSale tobereturn,
+			Administration conf, String _local) {
+
+		tobereturn.setlVoiture(new ArrayList<Voiture>());
+		int nombreVoiture = conf.getSizeParkPointOfSale(); // Use the capacity
+															// of conf
+		System.out.println("[INFO] Generation de "
+				+ nombreVoiture +" voitures");
+		for (int i = 0; i < nombreVoiture; i++) {
+			tobereturn.getlVoiture().add(GenerateurClasse.genererVoiture(conf));
+		}
+		tobereturn.setLocal(_local);
+		return tobereturn;
+	}
+
+	/**
+	 * 
+	 * 
+	 * @param tobereturn
+	 *            is a random pointOfSale generate with conf
+	 * @see PointOfSale
+	 * @param conf
+	 *            is a configuration to generate the PointOfSale and cars
 	 * @return PointOfSale
 	 */
 	public static PointOfSale genererPointOfSale(PointOfSale tobereturn,
@@ -159,14 +185,14 @@ public class GenerateurClasse {
 		tobereturn.setlVoiture(new ArrayList<Voiture>());
 		int nombreVoiture = conf.getSizeParkPointOfSale(); // Use the capacity
 															// of conf
-		System.out.println("Generation d'une company avec pour voiture : "
-				+ nombreVoiture);
+		System.out.println("[INFO] Generation de "
+				+ nombreVoiture +" voitures");
 		for (int i = 0; i < nombreVoiture; i++) {
 			tobereturn.getlVoiture().add(GenerateurClasse.genererVoiture(conf));
 		}
+	
 		return tobereturn;
 	}
-
 	/**
 	 * 
 	 * @param conf
@@ -197,7 +223,7 @@ public class GenerateurClasse {
 		Random random = new Random();
 		Double rndm = random.nextDouble();
 		Double probability = new Double(conf.getProbRent());
-		System.out.println(probability.toString() + " <=> " + rndm.toString());
+		//System.out.println(probability.toString() + " <=> " + rndm.toString());
 		boolean pis_rent;
 		if (probability == 0.0) {
 			pis_rent=false;

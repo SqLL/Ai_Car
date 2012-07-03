@@ -19,8 +19,8 @@ import cartago.*;
 public class PointOfSale extends Artifact {
 
 	private List<Voiture> lVoiture=new ArrayList<Voiture>();
-
-
+	private String local;
+	
 	void init() {
 		this.setlVoiture(new ArrayList<Voiture>());
 		int nombreVoiture = (int) (Math.random() * 10 + 3);
@@ -77,7 +77,7 @@ public class PointOfSale extends Artifact {
 	}
 
 	public String toString() {
-		StringBuffer result = new StringBuffer(
+		StringBuffer result = new StringBuffer("Localisation : "+this.local+
 				System.getProperty("line.separator"));
 		for (Voiture voiture : getlVoiture()) {
 			result.append(" Voiture : "
@@ -110,5 +110,13 @@ public class PointOfSale extends Artifact {
 
 	public void setlVoiture(List<Voiture> lVoiture) {
 		this.lVoiture = lVoiture;
+	}
+	
+	public String getLocal() {
+		return local;
+	}
+
+	public void setLocal(String local) {
+		this.local = local;
 	}
 }

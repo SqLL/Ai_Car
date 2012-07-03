@@ -1,5 +1,10 @@
 package seller;
-
+/**
+ * Abstract decorator of Voiture
+ * @author squall
+ * @see Voiture
+ *
+ */
 public abstract class DecorateurVoiture extends Voiture {
 
 	protected Voiture voiture;

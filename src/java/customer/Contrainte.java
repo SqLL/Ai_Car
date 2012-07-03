@@ -2,23 +2,17 @@ package customer;
 
 import java.util.Date;
 
-
-
 import cartago.Artifact;
 
-
-
-
 /**
+ * This class represent a request of the client What he want and what you need
+ * when you try to rent a car
  * 
  * @author squall
- *
- * This class represent a request of the client
- *  What he want and what you need when you try to rent a car
- *
+ * 
  */
 public class Contrainte extends Artifact {
-	
+
 	/*
 	 * Here you can add variable if you want to more specify the request
 	 */
@@ -26,8 +20,10 @@ public class Contrainte extends Artifact {
 	Date date_arriver = new Date();
 	String point_depart;
 	String point_arriver;
-	String typeVoiture=new String();
-	
+	String typeVoiture = new String();
+	String nameCompany;
+	String namePointsOfSales;
+
 	void Init() {
 
 	}
@@ -35,7 +31,7 @@ public class Contrainte extends Artifact {
 	/*
 	 * Getter and Setter
 	 */
-	
+
 	public Date getDate_depart() {
 		return date_depart;
 	}
@@ -75,5 +71,20 @@ public class Contrainte extends Artifact {
 	public void setTypeVoiture(String typeVoiture) {
 		this.typeVoiture = typeVoiture;
 	}
-		
+
+	public String getNameCompany() {
+		return nameCompany;
+	}
+
+	public void setNameCompany(String nameCompany) {
+		this.nameCompany = nameCompany;
+	}
+
+	public String getNamePointsOfSales() {
+		return namePointsOfSales;
+	}
+
+	public void setNamePointsOfSales(String namePointsOfSales) {
+		this.namePointsOfSales = namePointsOfSales;
+	}
 }
