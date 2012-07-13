@@ -3,9 +3,9 @@ package policy;
 public class FrogCar extends CompanyState {
 
 	@Override
-	int calculPrice() {
+	int calculPrice(int indice) {
 		// TODO Auto-generated method stub
-		return 0;
+		return indice*10;
 	}
 
 }

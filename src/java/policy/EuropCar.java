@@ -4,9 +4,9 @@ package policy;
 public class EuropCar extends CompanyState {
 
 	@Override
-	int calculPrice() {
+	int calculPrice(int indice) {
 		// TODO Auto-generated method stub
-		return 0;
+		return indice*2+200;
 	}
 
 }

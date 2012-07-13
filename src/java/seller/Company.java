@@ -29,6 +29,8 @@ public class Company extends Artifact {
 	private Administration config;
 	private String name;
 
+
+
 	void init()
 	{
 
@@ -105,6 +107,34 @@ public class Company extends Artifact {
 		lPoint.add(n);
 	}
 	
+	public List<PointOfSale> getlPoint() {
+		return lPoint;
+	}
+
+	public void setlPoint(List<PointOfSale> lPoint) {
+		this.lPoint = lPoint;
+	}
+
+	public PointOfSale getPointFound() {
+		return pointFound;
+	}
+
+	public void setPointFound(PointOfSale pointFound) {
+		this.pointFound = pointFound;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 	
+	@OPERATION
+	public void getCompany(OpFeedbackParam<Company> _company)
+	{
+		_company.set(this);
+	}
 	
 }

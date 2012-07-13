@@ -56,7 +56,10 @@ myconfig(CONF).
 		?myclient(C);
 		?mycompany(T);
 		getRequest(Request)[artifact_id(C)];
-		getCarAvailable(Request,List)[artifact_id(T)];
+		getCarAvailable(Request,List)[artifact_id(T)]; //Here we can make contract
+		getCompany(Company)[artifact_id(T)];//Here can be optimized
+		makeArtifact("contract","contract.Contract",[Request,Company,List],P);
+		makeContract[artifact_id(P)];
 		setCarAvailable(List) [artifact_id(C)];
 		setAnswer(true).
 

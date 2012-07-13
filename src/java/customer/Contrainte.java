@@ -23,8 +23,9 @@ public class Contrainte extends Artifact {
 	String typeVoiture = new String();
 	String nameCompany;
 	String namePointsOfSales;
-
-	void Init() {
+	String nameCustomer="Tintin";
+	
+	void init() {
 
 	}
 
@@ -86,5 +87,13 @@ public class Contrainte extends Artifact {
 
 	public void setNamePointsOfSales(String namePointsOfSales) {
 		this.namePointsOfSales = namePointsOfSales;
+	}
+
+	public String getNameCustomer() {
+		return nameCustomer;
+	}
+
+	public void setNameCustomer(String nameCustomer) {
+		this.nameCustomer = nameCustomer;
 	}
 }

@@ -12,7 +12,7 @@ public class Administration extends Artifact {
 	private double probRent; // Probabilite que la voiture soit loué
 	private int sizeParkPointOfSale; // Capacité des points de vente
 
-	void Init() {
+	void init() {
 
 	}
 

@@ -14,8 +14,7 @@ public class Test {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub		
 		
-
-		
+		/*
 		File target=new File("/Users/squall/Dropbox/Stage/Documents/tmp/hello.tex");
 		File dst=new File("/Users/squall/Dropbox/Stage/Documents/tmp/Newhello.tex");
 		Contract test=new Contract();
@@ -26,7 +25,7 @@ public class Test {
 			e.printStackTrace();
 		}
 		test.Execute(dst);
-		
+		*/
 		
 	}
 

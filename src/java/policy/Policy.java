@@ -14,6 +14,11 @@ public class Policy {
 	public CompanyState getState() {
 		return state;
 	}
+	
+	public Policy(String company)
+	{
+		setState(company);
+	}
 
 	public void setState(String company) {
 		if (company.equals("RandomCar")) {
@@ -32,8 +37,8 @@ public class Policy {
 		this.state=_state;
 	}
 	
-	public int calculPrice()
+	public int calculPrice(int indice)
 	{
-		return this.state.calculPrice();
+		return this.state.calculPrice(indice);
 	}
 }
