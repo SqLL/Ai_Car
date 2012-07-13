@@ -21,7 +21,12 @@ import cartago.OpFeedbackParam;
 
 public class Dialog extends Artifact {
 
+
 	private List<Voiture> carAvailable = new ArrayList<Voiture>();
+
+	/**
+	 * Request from the client to the rent for the seller
+	 */
 	private Contrainte request;
 	private boolean answerRequest;
 
@@ -48,6 +53,7 @@ public class Dialog extends Artifact {
 		signal("answerAvailable", result);
 		//System.out.println(" Signal envoyé");
 	}
+
 
 	@GUARD
 	public boolean waitingAnswer() {
