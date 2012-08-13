@@ -23,6 +23,7 @@ public class Dialog extends Artifact {
 
 
 	private List<Voiture> carAvailable = new ArrayList<Voiture>();
+	private Voiture carChoose;
 
 	/**
 	 * Request from the client to the rent for the seller
@@ -30,7 +31,7 @@ public class Dialog extends Artifact {
 	private Contrainte request;
 	private boolean answerRequest;
 
-	void Init() {
+	void init() {
 		request = new Contrainte();
 		answerRequest = false;
 	}
@@ -109,4 +110,24 @@ public class Dialog extends Artifact {
 		System.out.println(result.toString());
 	}
 
+	
+	@OPERATION 
+	public Voiture quickChoice(){
+		if(!this.carAvailable.isEmpty())
+		{
+			carChoose=this.carAvailable.get(0);
+		}
+		return carChoose;
+	}
+	
+	@OPERATION
+	public void getCarChoose(OpFeedbackParam<Voiture> _car)
+	{
+		_car.set(this.carChoose);
+	}
+	
+	@OPERATION
+	public void getTypeCarChoose(OpFeedbackParam<String> result){
+		result.set("seller."+carChoose.getType());
+	}
 }

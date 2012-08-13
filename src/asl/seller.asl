@@ -35,9 +35,6 @@ myconfig(CONF).
 		carAvailable.
 		
 
-
-
-
 +?myClient(DialogId): true
   <- lookupArtifact("c0",DialogId).
 
@@ -52,7 +49,7 @@ myconfig(CONF).
 	
 /* Here you need to propose all car available to the customer */
 +decisionAvailable(true) : true
-	<- .print("Company got car available");
+	<- .print("[SELLER] Company got car available");
 		?myclient(C);
 		?mycompany(T);
 		getRequest(Request)[artifact_id(C)];
@@ -64,5 +61,14 @@ myconfig(CONF).
 		setAnswer(true).
 
 +decisionAvailable(false) : true
-	<- .print("Company have'nt car available"). 
+	<- .print("[SELLER] Company have'nt car available"). 
+	
+	
++requestCar[source(customer)]
+    <-  getCarChoose(ObjectCar)[artifact_name(Car,"car")];
+    	makeArtifact("car","seller.Car",[ObjectCar],CAR);
+    	changeKey(Key)[artifact_name(Car,"car")];
+    	.print("[SELLER] Generate Key and Make Artifact Car for customer");
+    	.send(customer,achieve,useCar(Car,Key)).
+
 	

@@ -12,6 +12,7 @@ import cartago.Artifact;
 public abstract class Voiture extends Artifact {
 
 	protected boolean is_rent;
+	protected int key;// Key electronic
 	protected int indice;
 	protected String name;
 	
@@ -29,9 +30,12 @@ public abstract class Voiture extends Artifact {
 		return is_rent;
 	}
 	
+	
+	
 	public abstract String getType();
 	public abstract String toString();
 	public abstract int getIndice();
+	public abstract int changeKey();
+	public abstract void drive(int _key);
 	
-
 }

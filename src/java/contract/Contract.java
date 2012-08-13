@@ -22,6 +22,12 @@ import seller.Voiture;
 
 import customer.Contrainte;
 
+/**
+ * 
+ * @author squall
+ *
+ * Contract for a client and a seller
+ */
 public class Contract extends Artifact {
 
 	private Contrainte request;

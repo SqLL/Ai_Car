@@ -5,7 +5,14 @@ package seller;
  * @see Voiture
  */
 public class Turbo extends DecorateurVoiture {
-
+/**
+	@Override
+	public void init(Voiture _car) {
+		this.is_rent=_car.is_rent;
+		setName(_car.name);
+		setIndice(_car.getIndice());
+	}**/
+	
 	public Turbo(Voiture v)
 	{
 		this.voiture=v;
@@ -29,5 +36,24 @@ public class Turbo extends DecorateurVoiture {
 	@Override
 	public String getType() {
 		return this.voiture.getType();
+	}
+
+	@Override
+	public int changeKey() {
+		this.key = (int)(Math.random() * (Integer.MAX_VALUE-0)) + 0;
+		return key;
+	}
+	
+	@Override
+	public void drive(int _key) {
+		if(_key != this.key)
+		{
+			System.out.println("Wrong Key");
+		}
+		else
+		{
+			System.out.println("Right Key");
+		}
+		
 	}
 }

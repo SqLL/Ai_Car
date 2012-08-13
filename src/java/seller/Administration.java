@@ -9,8 +9,8 @@ import cartago.Artifact;
  */
 public class Administration extends Artifact {
 
-	private double probRent; // Probabilite que la voiture soit loué
-	private int sizeParkPointOfSale; // Capacité des points de vente
+	private double probRent; // Probability of the car to being rent
+	private int sizeParkPointOfSale; // Capacity of sales points 
 
 	void init() {
 

@@ -7,7 +7,14 @@ package seller;
  * @see Voiture
  */
 public class Tourisme extends Voiture {
-
+/**
+	@Override
+	public void init(Voiture _car) {
+		this.is_rent=_car.is_rent;
+		setName(_car.name);
+		setIndice(_car.getIndice());
+	}**/
+	
 	public Tourisme(boolean _is_rent, String _name) {
 		this.is_rent = _is_rent;
 		setName(_name);
@@ -29,4 +36,22 @@ public class Tourisme extends Voiture {
 		return indice;
 	}
 
+	@Override
+	public int changeKey() {
+		this.key = (int)(Math.random() * (Integer.MAX_VALUE-0)) + 0;
+		return key;
+	}
+	
+	@Override
+	public void drive(int _key) {
+		if(_key != this.key)
+		{
+			System.out.println("Wrong Key");
+		}
+		else
+		{
+			System.out.println("Right Key");
+		}
+		
+	}
 }
