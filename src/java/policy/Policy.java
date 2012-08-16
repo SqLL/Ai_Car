@@ -37,8 +37,8 @@ public class Policy {
 		this.state=_state;
 	}
 	
-	public int calculPrice(int indice)
+	public int calculPrice(int indice,int estimationKilometers)
 	{
-		return this.state.calculPrice(indice);
+		return this.state.calculPrice(indice,estimationKilometers);
 	}
 }

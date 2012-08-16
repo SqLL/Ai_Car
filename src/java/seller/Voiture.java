@@ -15,6 +15,7 @@ public abstract class Voiture extends Artifact {
 	protected int key;// Key electronic
 	protected int indice;
 	protected String name;
+	protected int counter; // Counter kilometers
 	
 	public void setIndice(int value)
 	{

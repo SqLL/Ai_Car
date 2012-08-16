@@ -7,5 +7,5 @@ public abstract class CompanyState {
 	 * @param indice 
 	 * 
 	 */
-	abstract int calculPrice(int indice);
+	abstract int calculPrice(int indice, int estimationKilometers);
 }

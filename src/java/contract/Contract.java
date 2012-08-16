@@ -16,6 +16,7 @@ import policy.Policy;
 
 import cartago.Artifact;
 import cartago.OPERATION;
+import cartago.OpFeedbackParam;
 
 import seller.Company;
 import seller.Voiture;
@@ -33,7 +34,9 @@ public class Contract extends Artifact {
 	private Contrainte request;
 	private Company company;
 	private List<Voiture> lVoiture;
+	private Voiture carChoosen;
 	private Policy policy;
+	private int penality;
 	String titre = "Respect Project";
 
 	/**
@@ -139,7 +142,7 @@ public class Contract extends Artifact {
 		} else if (idRepair.equals("customername")) {
 			content = request.getNameCustomer();
 		} else if (idRepair.equals("price")) {
-			content = policy.calculPrice(lVoiture.get(i).getIndice()) + " Euro";
+			content = policy.calculPrice(lVoiture.get(i).getIndice(),this.request.getEstimationKilometers()) + " Euro";
 		}
 
 		/*
@@ -191,6 +194,31 @@ public class Contract extends Artifact {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * 
+	 * 
+	 * @param finalPrice is the price for the client it's use as out/in parameter for Jason
+	 */
+	@OPERATION
+	public void calculPrice(OpFeedbackParam<Integer> finalPrice)
+	{
+		//Initialisations
+		//First part here can be to check the norms and add some sanctions.
+	
+		//Second Part for the moment the price is calculated with the estimation parameters
+		finalPrice.set(policy.calculPrice(this.carChoosen.getIndice(),this.request.getEstimationKilometers()));
+	
+		
+	}
 
+	public Voiture getCarChoosen() {
+		return carChoosen;
+	}
+
+	@OPERATION
+	public void setCarChoosen(Voiture carChoosen) {
+		this.carChoosen = carChoosen;
 	}
 }

@@ -23,8 +23,12 @@ public class Contrainte extends Artifact {
 	String typeVoiture = new String();
 	String nameCompany;
 	String namePointsOfSales;
+	int estimationKilometers;
 	String nameCustomer="Tintin";
 	
+	
+
+
 	void init() {
 
 	}
@@ -32,7 +36,6 @@ public class Contrainte extends Artifact {
 	/*
 	 * Getter and Setter
 	 */
-
 	public Date getDate_depart() {
 		return date_depart;
 	}
@@ -95,5 +98,13 @@ public class Contrainte extends Artifact {
 
 	public void setNameCustomer(String nameCustomer) {
 		this.nameCustomer = nameCustomer;
+	}
+	
+	public int getEstimationKilometers() {
+		return estimationKilometers;
+	}
+
+	public void setEstimationKilometers(int estimationKilometers) {
+		this.estimationKilometers = estimationKilometers;
 	}
 }

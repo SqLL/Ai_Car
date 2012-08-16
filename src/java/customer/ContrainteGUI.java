@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,6 +22,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -74,9 +76,13 @@ public class ContrainteGUI extends GUIArtifact {
 				if (radioButton.isSelected()) {
 					frame.request.setTypeVoiture(radioButton.getText());
 				}
-			if (frame.request.date_arriver.after(frame.request.date_depart)) {
+			if(this.frame.getInputKm().getText().length() != 0)
+			{
+			if ((frame.request.date_arriver.after(frame.request.date_depart))) {
 				frame.request.setNameCompany(this.frame.getlCompany().getSelectedItem().toString());
 				frame.request.setNamePointsOfSales(this.frame.getlSalesPoints().getSelectedItem().toString());
+				frame.request.setEstimationKilometers(Integer.parseInt((this.frame.getInputKm().getText().toString())));
+				System.out.println(frame.request.estimationKilometers);
 				signal("launch", frame.getRequest());
 			} else {
 				JOptionPane jop2 = new JOptionPane();
@@ -84,6 +90,10 @@ public class ContrainteGUI extends GUIArtifact {
 						frame.messages.getString("customer_error_date"),
 						frame.messages.getString("customer_error"),
 						JOptionPane.ERROR_MESSAGE);
+			}
+		}
+			else {
+				System.out.println("ERROR dans l'estimation de kilometres");
 			}
 		} else {
 			JOptionPane jop2 = new JOptionPane();
@@ -249,6 +259,8 @@ class customerFrame extends JFrame {
 				.getString("customer_estimation_km")));
 		inputKm.setPreferredSize(new Dimension(100, 25));
 		panel_km.add(inputKm);
+		
+
 		/* Nous pouvons passé aux boutons. */
 		gbc.gridy = 4; /* nouvelle ligne */
 		gbc.gridx = 0;
@@ -644,4 +656,14 @@ class customerFrame extends JFrame {
 	public void setlSalesPoints(JComboBox lSalesPoints) {
 		this.lSalesPoints = lSalesPoints;
 	}
+
+	public JTextField getInputKm() {
+		return inputKm;
+	}
+
+	public void setInputKm(JTextField inputKm) {
+		this.inputKm = inputKm;
+	}
+	
+	
 }

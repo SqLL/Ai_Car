@@ -55,6 +55,10 @@ get(Car).
 
 +!useCar(Car,Key) [source(seller)]
 	<- .print("[CUSTOMER] Let's Drive");
-	drive(Key)[artifact_name(Car,"car")].
+	drive(Key)[artifact_name(Car,"car")];
+	.print("[CUSTOMER] I give back the Car");
+	.send(seller,achieve,giveBack(Car)).
+	
+
 
 	

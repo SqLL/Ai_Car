@@ -5,6 +5,7 @@
 mycompany(E).
 myclient(C).
 myconfig(CONF).
+mycontract(P).
 
 /* Initial goals */
 
@@ -56,6 +57,7 @@ myconfig(CONF).
 		getCarAvailable(Request,List)[artifact_id(T)]; //Here we can make contract
 		getCompany(Company)[artifact_id(T)];//Here can be optimized
 		makeArtifact("contract","contract.Contract",[Request,Company,List],P);
+		-+mycontract(P);
 		makeContract[artifact_id(P)];
 		setCarAvailable(List) [artifact_id(C)];
 		setAnswer(true).
@@ -67,8 +69,15 @@ myconfig(CONF).
 +requestCar[source(customer)]
     <-  getCarChoose(ObjectCar)[artifact_name(Car,"car")];
     	makeArtifact("car","seller.Car",[ObjectCar],CAR);
+		setCarChoosen(ObjectCar)[artifact_id(P)];
     	changeKey(Key)[artifact_name(Car,"car")];
     	.print("[SELLER] Generate Key and Make Artifact Car for customer");
     	.send(customer,achieve,useCar(Car,Key)).
+
++!giveBack(Car)[source(customer)] : true
+	<- .print("[SELLER] Now we can end the contract");
+		calculPrice(Price)[artifact_name(Contract,"contract")];
+		.print("[SELLER] Price of the rent is ",Price).
+	
 
 	
