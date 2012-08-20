@@ -36,7 +36,7 @@ public class Contract extends Artifact {
 	private List<Voiture> lVoiture;
 	private Voiture carChoosen;
 	private Policy policy;
-	private int penality;
+//	private int penality;
 	String titre = "Respect Project";
 
 	/**
