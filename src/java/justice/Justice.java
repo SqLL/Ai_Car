@@ -8,6 +8,8 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 
+import configuration.Configuration;
+
 
 /**
  * This class contains the whole list about norms and the void to check the violations or not of the norms
@@ -24,9 +26,9 @@ public class Justice {
 	/**
 	 * Variable pour la connexion à la Base de données
 	 */
-	private String userName = "root"; // change it to your username
-	private String password = "root"; // change it to your password
-	private String url = "jdbc:mysql://localhost:3306/AI_Data";
+	private String userName = Configuration.userName; // change it to your username
+	private String password = Configuration.password; // change it to your password
+	private String url = Configuration.url;
 	private Connection dataLink;
 	
 	

@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import configuration.Configuration;
+
 import policy.Policy;
 
 import cartago.Artifact;
@@ -59,8 +61,7 @@ public class Contract extends Artifact {
 
 	@OPERATION
 	void makeContract() {
-		File target = new File(
-				"/Users/squall/Dropbox/Stage/Documents/tmp/contrat.tex");
+		File target = new File(Configuration.latexModel);
 		for (int i = lVoiture.size() - 1; i >= 0; i--) {
 			File dst = new File(target.getParent() + File.separatorChar + i
 					+ target.getName());

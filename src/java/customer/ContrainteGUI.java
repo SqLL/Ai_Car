@@ -40,6 +40,8 @@ import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 import com.toedter.calendar.JDateChooser;
 
+import configuration.Configuration;
+
 /**
  * This class is GUI for a client to say what he wants
  * @author squall
@@ -178,9 +180,9 @@ class customerFrame extends JFrame {
 	/**
 	 * Variable pour la connexion à la Base de données
 	 */
-	private String userName = "root"; // change it to your username
-	private String password = "root"; // change it to your password
-	private String url = "jdbc:mysql://localhost:3306/AI_Data";
+	private String userName = Configuration.userName; // change it to your username
+	private String password = Configuration.password; // change it to your password
+	private String url = Configuration.url;
 	private Connection dataLink;
 
 	/**
