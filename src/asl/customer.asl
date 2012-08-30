@@ -55,6 +55,7 @@ idcar(Car).
 
 +!proposalContract(true) [source(seller)]
 	<- .print("[CUSTOMER] J'accepte le contract");
+	addActionCustomer("sign contrat")[artifact_name(Id,"c0")];
 	.send(seller,achieve,signContract(true)).
 	
 +!firstPayment(Price) [source(seller)]
@@ -64,15 +65,10 @@ idcar(Car).
 
 
 +!useCar(Car,Key,IdCar) [source(seller)]
-	<-.print("RECEIVE LOOKUP!!!!!!!!!!!!!!!!!!!!!!!!!",IdCar);
-	lookupArtifact("car",IdCar);
-	.print("blabla !!!!!!!!!!!!!!!!!!!!!!!!!",IdCar);
+	<-lookupArtifact("car",IdCar);
 	-+idcar(IdCar);
 	focus(IdCar);
 	 .print("[CUSTOMER] Let's Drive");
-	//lookupArtifact("Car",Car);
-	//focus(getId(Car)[artifact_name(Car,"car")]);
-	//focusWhenAvailable(Car);
 	drive(Key)[artifact_name(Car,"car")];
 	.print("[CUSTOMER] I give back the Car");
 	.send(seller,achieve,giveBack(Car)).

@@ -14,5 +14,7 @@ public class Configuration {
 	 * Model latex path
 	 */
 	public static String latexModel="/Users/squall/Dropbox/Stage/Documents/tmp/contrat.tex";
+	
+	
 }
 

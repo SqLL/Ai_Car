@@ -409,4 +409,14 @@ public class Contract extends Artifact {
 		depart.set(this.request.getPoint_depart());
 		return depart.toString();
 	}
+
+	@OPERATION
+	public Policy getPolicy(OpFeedbackParam<Policy> _policy) {
+		_policy.set(policy);
+		return policy;
+	}
+
+	public void setPolicy(Policy policy) {
+		this.policy = policy;
+	}
 }

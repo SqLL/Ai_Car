@@ -1,4 +1,4 @@
-package seller;
+ package seller;
 
 import generator.GenerateurClasse;
 

@@ -26,6 +26,9 @@ public class Dialog extends Artifact {
 	private Voiture carChoose;
 	private List<Float> lPrices = new ArrayList<Float>();
 	private List<File> lFiles=new ArrayList<File>();
+	
+	private List<String> lActionCustomer = new ArrayList<String>();
+	private List<String> lActionSeller = new ArrayList<String>();
 
 
 
@@ -156,5 +159,37 @@ public class Dialog extends Artifact {
 		for (File v : lFiles) {
 			this.lFiles.add(v);
 		}
+	}
+
+	@OPERATION
+	public List<String> getlActionCustomer(OpFeedbackParam<List<String>> result) {
+		result.set(lActionCustomer);
+		return lActionCustomer;
+	}
+
+	public void setlActionCustomer(List<String> lActionCustomer) {
+		this.lActionCustomer = lActionCustomer;
+	}
+
+	@OPERATION
+	public List<String> getlActionSeller(OpFeedbackParam<List<String>> result) {
+		result.set(lActionSeller);
+		return lActionSeller;
+	}
+
+	public void setlActionSeller(List<String> lActionSeller) {
+		this.lActionSeller = lActionSeller;
+	}
+	
+	@OPERATION
+	public void addActionCustomer(String action)
+	{
+		this.lActionCustomer.add(action);
+	}
+	
+	@OPERATION
+	public void addActionSeller(String action)
+	{
+		this.lActionSeller.add(action);
 	}
 }

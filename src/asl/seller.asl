@@ -62,13 +62,16 @@ mycar(CAR).
 		-+mycontract(P);
 		makeContract[artifact_id(P)];
 		setCarAvailable(List) [artifact_id(C)];
-		getContractsList(ContractsList)[artifact_id(P)];
-		getCarPrices(CarPrices)[artifact_id(P)];
-		setlPrices(CarPrices)[artifact_id(C)];
-		setlFiles(ContractsList)[artifact_id(C)];
+		!updateDialog(true);
 		makeArtifact("justice","justice.Justice",[],J);
 		-+myjustice(J);
 		setAnswer(true).
+		
++!updateDialog(true)
+	<-	getContractsList(ContractsList)[artifact_id(P)];
+		getCarPrices(CarPrices)[artifact_id(P)];
+		setlPrices(CarPrices)[artifact_id(C)];
+		setlFiles(ContractsList)[artifact_id(C)].
 
 +decisionAvailable(false) : true
 	<- .print("[SELLER] Company have'nt car available"). 
@@ -76,10 +79,16 @@ mycar(CAR).
 	
 +requestCar[source(customer)]
     <-  getCarChoose(ObjectCar)[artifact_name(Id,"c0")];
+    	?mycontract(P);
+    	?myjustice(J);
     	getLocationDepart(Location);
+    	setCarChoosen(ObjectCar)[artifact_id(P)];
     	makeArtifact("car","seller.Car",[ObjectCar,Location],IdCar);
     	-+mycar(IdCar);
-		setCarChoosen(ObjectCar)[artifact_id(P)];
+    	getPolicy(ContractPolicy)[artifact_id(P)];
+    	setPolicy(ContractPolicy)[artifact_id(J)];
+    	setCar(ObjectCar)[artifact_id(J)];
+
 		.send(customer,achieve,proposalContract(true)).
 	
 //Sign of the contract with the client
@@ -87,9 +96,10 @@ mycar(CAR).
 		<-calculPrice(Price)[artifact_id(P)];
 		.send(customer,achieve,firstPayment(Price)).//first payement
 		
-//Checkpoint A and give the car
+//Update of list of action and then apply Checkpoint A and give the car
 +!getCar(true)[source(customer)]
-		<- checkPoint[artifact_id(J)];
+		<- !update(true);
+		checkPoint[artifact_id(J)];
 		getMasterKey(MKey);
 		?mycar(IdCar);
 		focus(IdCar);
@@ -102,6 +112,13 @@ mycar(CAR).
 +!giveBack(Car)[source(customer)] : true
 	<- .print("[SELLER] Now we can end the contract");
 	checkPoint[artifact_id(J)].
+
+
++!update(true)[source(self)] : true
+	<- getlActionCustomer(LActionCustomer)[artifact_name(Id,"c0")];
+		getlActionSeller(LActionSeller)[artifact_name(Id,"c0")];
+		setlActionCustomer(LActionCustomer)[artifact_id(J)];
+		setlActionSeller(LActionSeller)[artifact_id(J)].
 
 
 +damage(true) 

@@ -44,7 +44,7 @@ public enum Pertinence {
    public String toString()
    {
 	   if(this.value==0)
-	   return "A";
+		   return "A";
 	   else if(this.value==1)
 		   return "B";
 	   else
@@ -65,7 +65,7 @@ public enum Pertinence {
 	String evaluator;
 	String content;
 	int operator;
-	ArrayList<Pertinence> Checkpoints;
+	Pertinence pertinence;
 	Sanction Sanctions;
 	
 	/**
@@ -82,7 +82,6 @@ public enum Pertinence {
 			this.operator=0;
 		else
 			this.operator=1;
-		Checkpoints=new ArrayList<Pertinence>();
 		Sanctions=new Sanction();
 	}
 	
@@ -97,9 +96,8 @@ public enum Pertinence {
 	{
 		this.target=_target;
 		this.evaluator=_evaluator;
-		Checkpoints=new ArrayList<Pertinence>();
+		pertinence=_c;
 		Sanctions=_s;
-		Checkpoints.add(_c);
 	}
 	
 	/**
@@ -116,22 +114,25 @@ public enum Pertinence {
 	 * @param _state
 	 * @param _fee
 	 */
-	void addCheckpoint(Pertinence c)
+	void setPertinence(Pertinence c)
 	{
-		Checkpoints.add(c);
+		pertinence=(c);
 	}
 	
 	public String toString()
 	{
-		StringBuffer content = new StringBuffer("Norm : "+this.operator+" "+this.evaluator.toString()+" "+this.target.toString()+" "+this.content.toString());
-		for(Pertinence check : Checkpoints)
-		{
-			content.append(check.toString());
-		}
+		StringBuffer content = new StringBuffer("Norm : "+this.operator+" "+this.evaluator.toString()+" "+this.target.toString()+" "+this.content.toString()+" "+pertinence.toString());
 		content.append(System.getProperty("line.separator"));
 		content.append("	Sanction : "+Sanctions.toString());
 		
 		return content.toString();
 	}
 	
+	public Sanction getSanctions() {
+		return Sanctions;
+	}
+
+	public void setSanctions(Sanction sanctions) {
+		Sanctions = sanctions;
+	}
 }

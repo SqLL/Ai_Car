@@ -47,14 +47,13 @@ public class Car extends Artifact{
 	{
 		car=_car;
 		//Here it's to define the observable attribute
-		defineObsProperty("fuel",100);
-		defineObsProperty("mileage",0);
-		defineObsProperty("dirtyness",0);
-		defineObsProperty("currentLocation",_location);
-		defineObsProperty("tankCapacity",100);
-		defineObsProperty("malfunction",false);
-		defineObsProperty("damage",false);
-		
+		this.car.setFuel(100);
+		this.car.setMileage(0);
+		this.car.setDirtyness(0);
+		this.car.setCurrentLocation(_location);
+		this.car.setTankCapacity(100);
+		this.car.setMalfunction(false);
+		this.car.setDamage(false);		
 	}
 	
 	@OPERATION
@@ -65,15 +64,13 @@ public class Car extends Artifact{
 		int random = (int)(Math.random() * (100-0)) + 0;
 		if(random < this.malfunctionality)
 		{
-		    ObsProperty prop = getObsProperty("malfunction");
-		    prop.updateValue(true);
+			this.car.setMalfunction(true);
 			signal("malfunction");
 		}
 		random = (int)(Math.random() * (100-0)) + 0;
 		if(random < this.damage)
 		{
-		    ObsProperty prop = getObsProperty("damage");
-		    prop.updateValue(true);
+			this.car.setDamage(true);
 			signal("damage");
 		}
 		update(stop());
@@ -106,9 +103,7 @@ public class Car extends Artifact{
 	@OPERATION
 	public void refuel()
 	{
-		ObsProperty prop = getObsProperty("fuel");
-		ObsProperty tnkCapacity = getObsProperty("tankCapacity");
-	    prop.updateValue(tnkCapacity.intValue());
+	    this.car.setFuel(this.car.getTankCapacity());
 	}
 	
 	
@@ -116,11 +111,10 @@ public class Car extends Artifact{
 	@OPERATION
 	public void update(long timeStep)
 	{
-	    ObsProperty prop = getObsProperty("fuel");
-	    prop.updateValue(prop.intValue()-timeStep);
-	    prop = getObsProperty("mileage");
-	    prop.updateValue(prop.intValue()+timeStep);
-	    prop = getObsProperty("dirtyness"); 
-	    prop.updateValue(prop.intValue()+(timeStep/10));
+
+	    this.car.setFuel(this.car.getFuel() - timeStep);
+	    this.car.setMileage(this.car.getMileage() - timeStep);
+	    this.car.setDirtyness(this.car.getDirtyness()+(timeStep/10));
+	  
 	}
 }

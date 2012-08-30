@@ -12,6 +12,8 @@ import java.util.ArrayList;
  */
 public class Sanction {
 
+
+
 	ArrayList<String> state;
 	ArrayList<String> fee;
 	
@@ -40,5 +42,18 @@ public class Sanction {
 		for(int i=0,j=0;i<fee.size() && j <state.size()  ;i++,j++)
 			content.append(fee.get(i).toString()+" "+this.state.get(j).toString()+System.getProperty("line.separator"));
 		return content.toString();
+	}
+	
+	public ArrayList<String> getState() {
+		return state;
+	}
+	public void setState(ArrayList<String> state) {
+		this.state = state;
+	}
+	public ArrayList<String> getFee() {
+		return fee;
+	}
+	public void setFee(ArrayList<String> fee) {
+		this.fee = fee;
 	}
 }
