@@ -6,6 +6,8 @@ mycompany(E).
 myclient(C).
 myconfig(CONF).
 mycontract(P).
+myjustice(J).
+mycar(CAR).
 
 /* Initial goals */
 
@@ -60,6 +62,12 @@ mycontract(P).
 		-+mycontract(P);
 		makeContract[artifact_id(P)];
 		setCarAvailable(List) [artifact_id(C)];
+		getContractsList(ContractsList)[artifact_id(P)];
+		getCarPrices(CarPrices)[artifact_id(P)];
+		setlPrices(CarPrices)[artifact_id(C)];
+		setlFiles(ContractsList)[artifact_id(C)];
+		makeArtifact("justice","justice.Justice",[],J);
+		-+myjustice(J);
 		setAnswer(true).
 
 +decisionAvailable(false) : true
@@ -67,17 +75,38 @@ mycontract(P).
 	
 	
 +requestCar[source(customer)]
-    <-  getCarChoose(ObjectCar)[artifact_name(Car,"car")];
-    	makeArtifact("car","seller.Car",[ObjectCar],CAR);
+    <-  getCarChoose(ObjectCar)[artifact_name(Id,"c0")];
+    	getLocationDepart(Location);
+    	makeArtifact("car","seller.Car",[ObjectCar,Location],IdCar);
+    	-+mycar(IdCar);
 		setCarChoosen(ObjectCar)[artifact_id(P)];
-    	changeKey(Key)[artifact_name(Car,"car")];
+		.send(customer,achieve,proposalContract(true)).
+	
+//Sign of the contract with the client
++!signContract(true)[source(customer)]
+		<-calculPrice(Price)[artifact_id(P)];
+		.send(customer,achieve,firstPayment(Price)).//first payement
+		
+//Checkpoint A and give the car
++!getCar(true)[source(customer)]
+		<- checkPoint[artifact_id(J)];
+		getMasterKey(MKey);
+		?mycar(IdCar);
+		focus(IdCar);
+    	changeKey(Key,MKey)[artifact_name(Car,"car")];
     	.print("[SELLER] Generate Key and Make Artifact Car for customer");
-    	.send(customer,achieve,useCar(Car,Key)).
+    //	.send(customer,achieve,lookupArtifact(Car));
+    	.send(customer,achieve,useCar(Car,Key,Car)).
+
 
 +!giveBack(Car)[source(customer)] : true
 	<- .print("[SELLER] Now we can end the contract");
-		calculPrice(Price)[artifact_name(Contract,"contract")];
-		.print("[SELLER] Price of the rent is ",Price).
-	
+	checkPoint[artifact_id(J)].
 
+
++damage(true) 
+	<- .print("[SELLER] i know that There is some damages on car").
+	
++malfunction(true) 
+	<- .print("[SELLER] i know that There is some malfunction on car").	
 	

@@ -16,6 +16,7 @@ public abstract class Voiture extends Artifact {
 	protected int indice;
 	protected String name;
 	protected int counter; // Counter kilometers
+	protected int masterkey;
 	
 	public void setIndice(int value)
 	{
@@ -36,7 +37,11 @@ public abstract class Voiture extends Artifact {
 	public abstract String getType();
 	public abstract String toString();
 	public abstract int getIndice();
+	public abstract int getCounter();
 	public abstract int changeKey();
+	public abstract String getClassCar();
 	public abstract void drive(int _key);
+	public abstract String getName();
+	public abstract int getMasterKey();
 	
 }

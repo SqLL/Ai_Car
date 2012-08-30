@@ -30,6 +30,20 @@ public class Utilitaire extends Voiture {
 		this.is_rent = is_rent_;
 		setName(_name);
 		setIndice(20);
+		this.counter = (int)(Math.random() * (100000-0)) + 0;
+	}
+	
+	public Utilitaire(boolean is_rent_, String _name,int _masterkey)
+	{
+		this(is_rent_,_name);
+		this.masterkey=_masterkey;			
+	}
+	
+
+	
+	public int getCounter()
+	{
+		return this.counter;
 	}
 	
 	
@@ -67,6 +81,26 @@ public class Utilitaire extends Voiture {
 		
 	}
 	
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return this.name.toString();
+	}
 	
-
+	@Override
+	public String getClassCar() {
+		if (this.getIndice() <= 100 && this.getIndice() >= 90) {
+			return "A";
+		} else if (this.getIndice() >= 50 && this.getIndice() <= 89) {
+			return "B";
+		} else {
+			return "C";
+		}
+	}
+	
+	@Override
+	public int getMasterKey() {
+		// TODO Auto-generated method stub
+		return this.masterkey;
+	}
 }

@@ -17,14 +17,38 @@ public class Norms {
  * @author squall
  *
  */
-public enum Checkpoint {
+public enum Pertinence {
    A(0),B(1), C(2);
 
    protected int value;
 
    /** Constructeur */
-   Checkpoint(int num) {
+   Pertinence(int num) {
       this.value = num;
+   }
+   
+   Pertinence(String pert)
+   {
+	   if(pert.equals("A"))
+	   {
+		   this.value=0;
+	   }
+		   else if(pert.equals("B"))
+	   {
+		   this.value=1;
+	   }
+	   else
+		   this.value=2;
+   }
+  
+   public String toString()
+   {
+	   if(this.value==0)
+	   return "A";
+	   else if(this.value==1)
+		   return "B";
+	   else
+		   return "C";
    }
 
    public void change(){
@@ -34,11 +58,14 @@ public enum Checkpoint {
    public int getValue() {
       return this.value;
    }
+   
 }
 
 	String target;
-	int evaluator;
-	ArrayList<Checkpoint> Checkpoints;
+	String evaluator;
+	String content;
+	int operator;
+	ArrayList<Pertinence> Checkpoints;
 	Sanction Sanctions;
 	
 	/**
@@ -46,11 +73,17 @@ public enum Checkpoint {
 	 * @param _target
 	 * @param _evaluator
 	 */
-	Norms(String _target,int _evaluator)
+	Norms(String _target,String _evaluator,String _content,String operator)
 	{
 		this.target=_target;
 		this.evaluator=_evaluator;
-		Checkpoints=new ArrayList<Checkpoint>();
+		this.content=_content;
+		if(operator.equals("obl"))
+			this.operator=0;
+		else
+			this.operator=1;
+		Checkpoints=new ArrayList<Pertinence>();
+		Sanctions=new Sanction();
 	}
 	
 	/**
@@ -60,11 +93,11 @@ public enum Checkpoint {
 	 * @param _s
 	 * @param _c
 	 */
-	Norms(String _target,int _evaluator,Sanction _s,Checkpoint _c)
+	Norms(String _target,String _evaluator,Sanction _s,Pertinence _c)
 	{
 		this.target=_target;
 		this.evaluator=_evaluator;
-		Checkpoints=new ArrayList<Checkpoint>();
+		Checkpoints=new ArrayList<Pertinence>();
 		Sanctions=_s;
 		Checkpoints.add(_c);
 	}
@@ -74,7 +107,7 @@ public enum Checkpoint {
 	 * @param _state
 	 * @param _fee
 	 */
-	void addSanction(String _state,int _fee)
+	void addSanction(String _state,String _fee)
 	{
 		Sanctions.AddOne(_state, _fee);
 	}
@@ -83,10 +116,22 @@ public enum Checkpoint {
 	 * @param _state
 	 * @param _fee
 	 */
-	void addCheckpoint(Checkpoint c)
+	void addCheckpoint(Pertinence c)
 	{
 		Checkpoints.add(c);
 	}
 	
+	public String toString()
+	{
+		StringBuffer content = new StringBuffer("Norm : "+this.operator+" "+this.evaluator.toString()+" "+this.target.toString()+" "+this.content.toString());
+		for(Pertinence check : Checkpoints)
+		{
+			content.append(check.toString());
+		}
+		content.append(System.getProperty("line.separator"));
+		content.append("	Sanction : "+Sanctions.toString());
+		
+		return content.toString();
+	}
 	
 }

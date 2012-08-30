@@ -7,21 +7,29 @@ package seller;
  * @see Voiture
  */
 
-
 public class Automatique extends Voiture {
 
-	
-
 	public void init(Voiture _car) {
-		this.is_rent=_car.is_rent;
+		this.is_rent = _car.is_rent;
 		setName(_car.name);
 		setIndice(_car.getIndice());
 	}
-	
+
 	public Automatique(boolean _is_rent, String _name) {
 		this.is_rent = _is_rent;
 		setName(_name);
 		setIndice(40);
+		this.counter = (int) (Math.random() * (100000 - 0)) + 0;
+	}
+
+	public Automatique(boolean is_rent_, String _name,int _masterkey)
+	{
+		this(is_rent_,_name);
+		this.masterkey=_masterkey;			
+	}
+	
+	public int getCounter() {
+		return this.counter;
 	}
 
 	@Override
@@ -42,23 +50,42 @@ public class Automatique extends Voiture {
 
 	@Override
 	public int changeKey() {
-		this.key = (int)(Math.random() * (Integer.MAX_VALUE-0)) + 0;
+		this.key = (int) (Math.random() * (Integer.MAX_VALUE - 0)) + 0;
 		return key;
 	}
 
 	@Override
 	public void drive(int _key) {
-		if(_key != this.key)
-		{
+		if (_key != this.key) {
 			System.out.println("Wrong Key");
-		}
-		else
-		{
+		} else {
 			System.out.println("Right Key");
 		}
-		
+
 	}
 
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return this.name.toString();
+	}
 
+	@Override
+	public String getClassCar() {
+		if (this.getIndice() <= 100 && this.getIndice() >= 90) {
+			return "A";
+		} else if (this.getIndice() >= 50 && this.getIndice() <= 89) {
+			return "B";
+		} else {
+
+			return "C";
+		}
+	}
+
+	@Override
+	public int getMasterKey() {
+		// TODO Auto-generated method stub
+		return this.masterkey;
+	}
 
 }

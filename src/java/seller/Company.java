@@ -28,6 +28,7 @@ public class Company extends Artifact {
 	private PointOfSale pointFound;
 	private Administration config;
 	private String name;
+	private int masterKey;
 
 
 
@@ -40,8 +41,8 @@ public class Company extends Artifact {
 
 	void init(Administration conf)
 	{
-		lPoint = new ArrayList<PointOfSale>();
-		lPoint.add(GenerateurClasse.genererPointOfSale(new PointOfSale(),conf));
+	//	lPoint = new ArrayList<PointOfSale>();
+	//	lPoint.add(GenerateurClasse.genererPointOfSale(new PointOfSale(),conf,));
 
 	}
 	
@@ -49,7 +50,8 @@ public class Company extends Artifact {
 	{
 		name=request.getNameCompany();
 		lPoint = new ArrayList<PointOfSale>();
-		lPoint.add(GenerateurClasse.genererPointOfSale(new PointOfSale(),conf,request.getNamePointsOfSales()));
+		this.masterKey= (int) (Math.random() * (Integer.MAX_VALUE - 0)) + 0;;
+		lPoint.add(GenerateurClasse.genererPointOfSale(new PointOfSale(),conf,request.getNamePointsOfSales(),masterKey));
 	}
 
 	
@@ -135,6 +137,13 @@ public class Company extends Artifact {
 	public void getCompany(OpFeedbackParam<Company> _company)
 	{
 		_company.set(this);
+	}
+	
+	@OPERATION
+	public int getMasterKey(OpFeedbackParam<Integer> _master)
+	{
+		_master.set(this.masterKey);
+		return _master.get();
 	}
 	
 }

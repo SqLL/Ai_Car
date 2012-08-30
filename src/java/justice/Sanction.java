@@ -13,20 +13,32 @@ import java.util.ArrayList;
 public class Sanction {
 
 	ArrayList<String> state;
-	ArrayList<Integer> fee;
+	ArrayList<String> fee;
 	
-	Sanction(String _state,int _fee)
+	Sanction(String _state,String _fee)
 	{
-		this.fee=new ArrayList<Integer>();
+		this.fee=new ArrayList<String>();
 		this.state=new ArrayList<String>();
 		this.fee.add(_fee);
 		this.state.add(_state);
 	}
+	Sanction()
+	{
+		this.fee=new ArrayList<String>();
+		this.state=new ArrayList<String>();	
+	}
 	
-	public void AddOne(String _state,int _fee)
+	public void AddOne(String _state,String _fee)
 	{
 		this.fee.add(_fee);
 		this.state.add(_state);
 	}
 	
+	public String toString()
+	{
+		StringBuffer content=new StringBuffer();
+		for(int i=0,j=0;i<fee.size() && j <state.size()  ;i++,j++)
+			content.append(fee.get(i).toString()+" "+this.state.get(j).toString()+System.getProperty("line.separator"));
+		return content.toString();
+	}
 }

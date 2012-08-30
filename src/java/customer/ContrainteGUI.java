@@ -84,7 +84,11 @@ public class ContrainteGUI extends GUIArtifact {
 				frame.request.setNameCompany(this.frame.getlCompany().getSelectedItem().toString());
 				frame.request.setNamePointsOfSales(this.frame.getlSalesPoints().getSelectedItem().toString());
 				frame.request.setEstimationKilometers(Integer.parseInt((this.frame.getInputKm().getText().toString())));
-				System.out.println(frame.request.estimationKilometers);
+				frame.request.setPoint_depart(this.frame.getlSalesPoints().getSelectedItem().toString());
+				frame.request.setPoint_arriver(this.frame.getlSalesPointsDst().getSelectedItem().toString());
+				System.out.println(this.frame.getlSalesPointsDst().getSelectedItem().toString());
+				System.out.println(frame.getJcalEnd().getDate());
+				
 				signal("launch", frame.getRequest());
 			} else {
 				JOptionPane jop2 = new JOptionPane();
@@ -172,6 +176,8 @@ class customerFrame extends JFrame {
 	 * Menu et elements du menu pour switch le language
 	 */
 	private JMenuBar menuBar = new JMenuBar();
+
+
 	private JMenu lang = new JMenu("Language");
 	private JMenuItem langFr = new JMenuItem("Francais");
 	private JMenuItem langEn = new JMenuItem("Anglais");
@@ -667,5 +673,12 @@ class customerFrame extends JFrame {
 		this.inputKm = inputKm;
 	}
 	
+	public JComboBox getlSalesPointsDst() {
+		return lSalesPointsDst;
+	}
+
+	public void setlSalesPointsDst(JComboBox lSalesPointsDst) {
+		this.lSalesPointsDst = lSalesPointsDst;
+	}
 	
 }

@@ -2,7 +2,7 @@ package communication;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.io.File;
 import customer.Contrainte;
 
 import seller.Voiture;
@@ -24,12 +24,17 @@ public class Dialog extends Artifact {
 
 	private List<Voiture> carAvailable = new ArrayList<Voiture>();
 	private Voiture carChoose;
+	private List<Float> lPrices = new ArrayList<Float>();
+	private List<File> lFiles=new ArrayList<File>();
+
+
 
 	/**
 	 * Request from the client to the rent for the seller
 	 */
 	private Contrainte request;
 	private boolean answerRequest;
+	
 
 	void init() {
 		request = new Contrainte();
@@ -95,19 +100,27 @@ public class Dialog extends Artifact {
 	public void display() {
 
 		StringBuffer result = new StringBuffer();
-		for (Voiture voiture : this.carAvailable) {
+		for (int i=0;i<this.carAvailable.size();i++) {
 			result.append(" Voiture : "
-					+ voiture.toString()
+					+ this.carAvailable.get(i).toString()
 					+ System.getProperty("line.separator")
 					+ " Indice : "
-					+ voiture.getIndice()
+					+ this.carAvailable.get(i).getIndice()
 					+ System.getProperty("line.separator")
-					+ (voiture.is_Rent() ? " Voiture louŽ"
+					+ (this.carAvailable.get(i).is_Rent() ? " Voiture louŽ"
 							: " Voiture non louŽ")
+					+ System.getProperty("line.separator")
+					+ this.lFiles.get(i).getName().toString()
+					+ System.getProperty("line.separator")
+					+ this.lPrices.get(i)+""
 					+ System.getProperty("line.separator"));
 			result.append(System.getProperty("line.separator"));
+			
+		
 		}
 		System.out.println(result.toString());
+		
+		
 	}
 
 	
@@ -129,5 +142,19 @@ public class Dialog extends Artifact {
 	@OPERATION
 	public void getTypeCarChoose(OpFeedbackParam<String> result){
 		result.set("seller."+carChoose.getType());
+	}
+	
+	@OPERATION
+	public void setlPrices(List<Float> _lPrices) {
+		for (Float v : _lPrices) {
+			this.lPrices.add(v);
+		}
+	}
+
+	@OPERATION
+	public void setlFiles(List<File> lFiles) {
+		for (File v : lFiles) {
+			this.lFiles.add(v);
+		}
 	}
 }

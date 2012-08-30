@@ -52,6 +52,7 @@ public class Contrainte extends Artifact {
 		this.date_arriver = date_arriver;
 	}
 
+	
 	public String getPoint_depart() {
 		return point_depart;
 	}

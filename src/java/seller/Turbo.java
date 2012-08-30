@@ -18,6 +18,13 @@ public class Turbo extends DecorateurVoiture {
 		this.voiture=v;
 	}
 	
+
+
+	public int getCounter()
+	{
+		return this.voiture.getCounter();
+	}
+	
 	@Override
 	public int getIndice() {
 		return this.voiture.getIndice()+10;
@@ -55,5 +62,29 @@ public class Turbo extends DecorateurVoiture {
 			System.out.println("Right Key");
 		}
 		
+	}
+	
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return this.voiture.toString();
+	}
+	
+	@Override
+	public String getClassCar() {
+		if (this.getIndice() <= 100 && this.getIndice() >= 90) {
+			return "A";
+		} else if (this.getIndice() >= 50 && this.getIndice() <= 89) {
+			return "B";
+		} else {
+
+			return "C";
+		}
+	}
+	
+	@Override
+	public int getMasterKey() {
+		// TODO Auto-generated method stub
+		return this.voiture.masterkey;
 	}
 }

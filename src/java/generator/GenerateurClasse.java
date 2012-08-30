@@ -155,7 +155,7 @@ public class GenerateurClasse {
 	 * @return PointOfSale
 	 */
 	public static PointOfSale genererPointOfSale(PointOfSale tobereturn,
-			Administration conf, String _local) {
+			Administration conf, String _local,int masterkey) {
 
 		tobereturn.setlVoiture(new ArrayList<Voiture>());
 		int nombreVoiture = conf.getSizeParkPointOfSale(); // Use the capacity
@@ -163,7 +163,7 @@ public class GenerateurClasse {
 		System.out.println("[INFO] Generation de "
 				+ nombreVoiture +" voitures");
 		for (int i = 0; i < nombreVoiture; i++) {
-			tobereturn.getlVoiture().add(GenerateurClasse.genererVoiture(conf));
+			tobereturn.getlVoiture().add(GenerateurClasse.genererVoiture(conf,masterkey));
 		}
 		tobereturn.setLocal(_local);
 		return tobereturn;
@@ -180,7 +180,7 @@ public class GenerateurClasse {
 	 * @return PointOfSale
 	 */
 	public static PointOfSale genererPointOfSale(PointOfSale tobereturn,
-			Administration conf) {
+			Administration conf,int masterkey) {
 
 		tobereturn.setlVoiture(new ArrayList<Voiture>());
 		int nombreVoiture = conf.getSizeParkPointOfSale(); // Use the capacity
@@ -188,7 +188,7 @@ public class GenerateurClasse {
 		System.out.println("[INFO] Generation de "
 				+ nombreVoiture +" voitures");
 		for (int i = 0; i < nombreVoiture; i++) {
-			tobereturn.getlVoiture().add(GenerateurClasse.genererVoiture(conf));
+			tobereturn.getlVoiture().add(GenerateurClasse.genererVoiture(conf,masterkey));
 		}
 	
 		return tobereturn;
@@ -200,7 +200,7 @@ public class GenerateurClasse {
 	 *            attributes from the car
 	 * @return Car artifact
 	 */
-	private static Voiture genererVoiture(Administration conf) {
+	private static Voiture genererVoiture(Administration conf,int masterkey) {
 
 		int possibilite = (int) (Math.random() * (NUMBERCHOIX - 0) + 0);
 		Voiture result;
@@ -208,17 +208,17 @@ public class GenerateurClasse {
 		// System.out.println("possibilite = "+possibilite);
 		if (possibilite == 0) // without option
 		{
-			result = GenererVoitureSansOption(conf);
+			result = GenererVoitureSansOption(conf,masterkey);
 		} else // with option(s)
 		{
 			result = GenererOption(((int) (Math.random() * NUMBEROPTION + 1)),
-					GenererVoitureSansOption(conf));
+					GenererVoitureSansOption(conf,masterkey));
 		}
 		return result;
 
 	}
 
-	private static Voiture GenererVoitureSansOption(Administration conf) {
+	private static Voiture GenererVoitureSansOption(Administration conf,int masterkey) {
 		// Random Rent
 		Random random = new Random();
 		Double rndm = random.nextDouble();
@@ -247,19 +247,19 @@ public class GenerateurClasse {
 		// System.out.println("voitureType = "+voitureType);
 		switch (voitureType) {
 		case 1:
-			return new Utilitaire(pis_rent, voitureMarque);
+			return new Utilitaire(pis_rent, voitureMarque,masterkey);
 
 		case 2:
-			return new Tourisme(pis_rent, voitureMarque);
+			return new Tourisme(pis_rent, voitureMarque,masterkey);
 
 		case 3:
-			return new Automatique(pis_rent, voitureMarque);
+			return new Automatique(pis_rent, voitureMarque,masterkey);
 
 		case 4:
-			return new ToutTerrain(pis_rent, voitureMarque);
+			return new ToutTerrain(pis_rent, voitureMarque,masterkey);
 
 		default:
-			return new PrestigeAndFun(pis_rent, voitureMarque);
+			return new PrestigeAndFun(pis_rent, voitureMarque,masterkey);
 
 		}
 	}

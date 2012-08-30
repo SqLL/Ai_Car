@@ -1,5 +1,6 @@
 want(Request).
-get(Car).
+idcar(Car).
+
 
 !gui.
 
@@ -52,13 +53,34 @@ get(Car).
 +answerAvailable(false) [artifact_name(Id,"c0")]
 	<- .print("no car are available for me").
 
++!proposalContract(true) [source(seller)]
+	<- .print("[CUSTOMER] J'accepte le contract");
+	.send(seller,achieve,signContract(true)).
+	
++!firstPayment(Price) [source(seller)]
+	<- .print("[CUSTOMER] je paye la somme de ",Price);
+	.send(seller,achieve,getCar(true)).
+	
 
-+!useCar(Car,Key) [source(seller)]
-	<- .print("[CUSTOMER] Let's Drive");
+
++!useCar(Car,Key,IdCar) [source(seller)]
+	<-.print("RECEIVE LOOKUP!!!!!!!!!!!!!!!!!!!!!!!!!",IdCar);
+	lookupArtifact("car",IdCar);
+	.print("blabla !!!!!!!!!!!!!!!!!!!!!!!!!",IdCar);
+	-+idcar(IdCar);
+	focus(IdCar);
+	 .print("[CUSTOMER] Let's Drive");
+	//lookupArtifact("Car",Car);
+	//focus(getId(Car)[artifact_name(Car,"car")]);
+	//focusWhenAvailable(Car);
 	drive(Key)[artifact_name(Car,"car")];
 	.print("[CUSTOMER] I give back the Car");
 	.send(seller,achieve,giveBack(Car)).
 	
-
++damage(true)
+	<- .print("[CUSTOMER] There is some damages on car").
+	
++malfunction(true)
+	<- .print("[CUSTOMER] There is some Malfunction on car").	
 
 	

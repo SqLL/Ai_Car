@@ -21,11 +21,23 @@ public class PrestigeAndFun extends Voiture {
 		this.is_rent = _is_rent;
 		setName(_name);
 		setIndice(50);
+		this.counter = (int)(Math.random() * (100000-0)) + 0;
+	}
+	
+	public PrestigeAndFun(boolean is_rent_, String _name,int _masterkey)
+	{
+		this(is_rent_,_name);
+		this.masterkey=_masterkey;			
+	}
+	
+	public int getCounter()
+	{
+		return this.counter;
 	}
 
 	@Override
 	public String getType() {
-		return "Prestige and fun";
+		return "Prestige and Fun";
 	}
 	
 	@Override
@@ -53,8 +65,31 @@ public class PrestigeAndFun extends Voiture {
 		else
 		{
 			System.out.println("Right Key");
+		}	
+	}
+	
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return this.name.toString();
+	}
+	
+	@Override
+	public String getClassCar() {
+		if (this.getIndice() <= 100 && this.getIndice() >= 90) {
+			return "A";
+		} else if (this.getIndice() >= 50 && this.getIndice() <= 89) {
+			return "B";
+		} else {
+
+			return "C";
 		}
-		
+	}
+	
+	@Override
+	public int getMasterKey() {
+		// TODO Auto-generated method stub
+		return this.masterkey;
 	}
 
 }
